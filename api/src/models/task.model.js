@@ -1,8 +1,8 @@
 /*
  * Title: task.model.js
- * Description : Schema for task
+ * Description :
  * Author: Tanvir Hassan Joy
- * Date: 2024-05-12 21:58:14
+ * Date: 2024-07-03 19:32:06
  */
 
 import mongoose from "mongoose";

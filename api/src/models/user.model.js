@@ -1,10 +1,9 @@
 /*
  * Title: user.model.js
- * Description : Schema for user
+ * Description :
  * Author: Tanvir Hassan Joy
- * Date: 2024-05-12 21:58:34
+ * Date: 2024-07-03 19:31:09
  */
-
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import validator from "validator";
