@@ -37,7 +37,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    [email, password].forEach((field) => {
+    [(email, password)].forEach((field) => {
       if (!field) {
         return res.json(new apiError(400, "All fields are required"));
       }

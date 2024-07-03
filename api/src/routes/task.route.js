@@ -23,7 +23,7 @@ router.post("/create", verifyJwt, createTask);
 
 router.get("/get/:id", verifyJwt, getTask);
 
-router.getAll("/get-all", verifyJwt, getAllTask);
+router.get("/get-all", verifyJwt, getAllTask);
 
 router.put("/update/:id", verifyJwt, updateTask);
 

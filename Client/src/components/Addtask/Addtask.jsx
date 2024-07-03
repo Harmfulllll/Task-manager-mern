@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./addtask.scss";
+import "./Addtask.css";
 import { addTask } from "../../redux/Conf/taskSlice";
 import { useDispatch, useSelector } from "react-redux";
 

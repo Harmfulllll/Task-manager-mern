@@ -12,11 +12,11 @@ const Home = () => {
         <h3>Be more productive</h3>
 
         {currentUser && currentUser.token ? (
-          <Link to="/dashboard" className="button">
+          <Link to="/task" className="button">
             Get Started
           </Link>
         ) : (
-          <Link to="/signin" className="button">
+          <Link to="/login" className="button">
             Get Started
           </Link>
         )}

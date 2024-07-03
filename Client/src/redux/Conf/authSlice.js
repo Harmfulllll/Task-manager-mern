@@ -55,7 +55,7 @@ export const register = (user) => async (dispatch) => {
     };
 
     const response = await axios.post(
-      "http://localhost:5000/api/v1/auth/register",
+      "http://localhost:5000/api/v1/user/register",
       user,
       config
     );
@@ -63,7 +63,7 @@ export const register = (user) => async (dispatch) => {
     if (response) {
       dispatch(registerSuccess(response.data));
       toast.success("register successfull");
-      history.push("/signin");
+      history.push("/login");
       window.location.reload();
     } else {
       dispatch(registerFailure());
@@ -75,22 +75,29 @@ export const register = (user) => async (dispatch) => {
   }
 };
 
-export const signin = (user) => async (dispatch) => {
-  console.log(user);
+export const login = (user) => async (dispatch) => {
+  //console.log(user);
+
   try {
+    const config = {
+      headers: {
+        "content-type": "application/json",
+      },
+    };
     const userData = {
       email: user.email,
       password: user.password,
     };
     const response = await axios.post(
-      "http://localhost:5000/api/v1/auth/login",
-      userData
+      "http://localhost:5000/api/v1/user/login",
+      userData,
+      config
     );
-    if (response) {
-      localStorage.setItem("auth", JSON.stringify(response.data));
+    if (response.status === 200) {
+      // localStorage.setItem("auth", JSON.stringify(response.data));
       dispatch(loginSuccess(response.data));
 
-      history.push("/dashboard");
+      history.push("/task");
       toast.success("login successfull");
 
       window.location.reload();

@@ -107,7 +107,7 @@ export const changeStatus = (item) => async () => {
 
   try {
     let response = await axios.put(
-      `http://localhost:5000/api/v1/task/${taskData.id}`,
+      `http://localhost:5000/api/v1/task/change-status/${taskData.id}`,
       taskData
     );
 
@@ -120,7 +120,9 @@ export const changeStatus = (item) => async () => {
 };
 
 export const deleteItem = (id) => async (dispatch) => {
-  let res = await axios.delete(`http://localhost:5000/api/v1/task/${id}`);
+  let res = await axios.delete(
+    `http://localhost:5000/api/v1/task/delete/${id}`
+  );
 
   if (res) {
     dispatch(deleteSuccess());

@@ -1,6 +1,6 @@
 import AddTask from "../../components/Addtask/Addtask";
 import TaskList from "../../components/TaskView/TaskView";
-import "./taskmanager.scss";
+import "./Tasks.css";
 
 const TaskManager = () => {
   return (

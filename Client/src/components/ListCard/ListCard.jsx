@@ -1,6 +1,6 @@
-import "./listcard.scss";
+import "./ListCard.css";
 import { BiChevronLeft, BiChevronRight, BiTrash } from "react-icons/bi";
-import { arrowClick, deleteItem } from "../../redux/Conf/taskSlice";
+import { changeStatus, deleteItem } from "../../redux/Conf/taskSlice";
 import { useDispatch } from "react-redux";
 
 const ListCard = (items) => {
