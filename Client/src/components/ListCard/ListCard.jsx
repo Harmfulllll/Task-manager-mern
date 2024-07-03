@@ -5,11 +5,9 @@ import { useDispatch } from "react-redux";
 
 const ListCard = (items) => {
   const { item } = items;
-
   const dispatch = useDispatch();
-
-  const changeStatus = () => {
-    dispatch(arrowClick(item));
+  const change = () => {
+    dispatch(changeStatus(item));
   };
   const handleDelete = () => {
     dispatch(deleteItem(item._id));
@@ -17,24 +15,23 @@ const ListCard = (items) => {
 
   return (
     <div>
-      <ul className={` ${item.status === "done" ? "completed menu" : "menu"}`}>
+      <ul className="menu">
         <li>
           <p>{item._id}</p>
         </li>
         <li>
-          <p>{item.task}</p>
+          <p>{item.title}</p>
         </li>
         <li>
           <p>{item.description}</p>
         </li>
         <li>
-          <p>{item.status}</p>
+          <p>{item.completed === true ? "Done" : "Pending"}</p>
         </li>
         <li>
-          <button
-            disabled={item.status === true}
-            onClick={() => changeStatus()}
-          ></button>
+          <button disabled={item.completed === true} onClick={() => change()}>
+            Change Status
+          </button>
           <button onClick={handleDelete}>
             <BiTrash />
           </button>

@@ -12,14 +12,14 @@ import taskModel from "../models/task.model.js";
 //create task
 const createTask = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, id } = req.body;
     if (!title || !description) {
       return res.json(new apiError(400, "All fields are required"));
     }
     const task = await taskModel.create({
       title,
       description,
-      owner: req.user._id,
+      owner: id,
     });
 
     const links = [
@@ -76,29 +76,15 @@ const getTask = async (req, res) => {
 //get all task of a owner by any parameter
 const getAllTask = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const skip = (page - 1) * limit;
+    const { id } = req.query;
 
     //Finding by id. we can find by other parameters as well
 
-    const tasks = await taskModel
-      .find({ owner: req.user._id })
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
+    const tasks = await taskModel.find({ owner: id });
     if (!tasks) {
       return res.json(new apiError(404, "No task found"));
     }
-    const links = [
-      {
-        rel: "create",
-        href: `/api/v1/task/create`,
-        method: "POST",
-      },
-    ];
-
-    return res.json(new apiResponse(200, { tasks, links }, "Tasks found"));
+    return res.status(200).send(tasks);
   } catch (error) {
     return res.json(new apiError(400, error.message || "Error getting tasks"));
   }
@@ -146,7 +132,7 @@ const changeStatus = async (req, res) => {
     if (!task) {
       return res.json(new apiError(404, "Task not found"));
     }
-    task.status = !task.status;
+    task.completed = true;
     await task.save();
     const links = [
       {
@@ -160,9 +146,7 @@ const changeStatus = async (req, res) => {
         method: "DELETE",
       },
     ];
-    return res.json(
-      new apiResponse(200, { task, links }, "Task status updated successfully")
-    );
+    return res.send(task);
   } catch (error) {
     return res.json(new apiError(400, error.message || "Error updating task"));
   }

@@ -53,10 +53,11 @@ export const {
 
 export default taskSlice.reducer;
 
-export const addTask = (title, description) => async (dispatch) => {
+export const addTask = (title, description, id) => async (dispatch) => {
   const taskData = {
     title,
     description,
+    id,
   };
   const response = await axios.post(
     "http://localhost:5000/api/v1/task/create",
@@ -88,7 +89,6 @@ export const getAllTasks = (token, id) => async (dispatch) => {
       "http://localhost:5000/api/v1/task/get-all",
       config
     );
-
     if (response) {
       dispatch(getAllTaskSuccess(response.data));
     }
@@ -102,7 +102,6 @@ export const getAllTasks = (token, id) => async (dispatch) => {
 export const changeStatus = (item) => async () => {
   let taskData = {
     id: item._id,
-    status: item.status,
   };
 
   try {
@@ -110,6 +109,7 @@ export const changeStatus = (item) => async () => {
       `http://localhost:5000/api/v1/task/change-status/${taskData.id}`,
       taskData
     );
+    console.log(response);
 
     if (response) {
       window.location.reload();
@@ -123,7 +123,7 @@ export const deleteItem = (id) => async (dispatch) => {
   let res = await axios.delete(
     `http://localhost:5000/api/v1/task/delete/${id}`
   );
-
+  console.log(res);
   if (res) {
     dispatch(deleteSuccess());
     toast.success("task deleted successfully");

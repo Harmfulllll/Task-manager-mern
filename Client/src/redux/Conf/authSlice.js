@@ -93,8 +93,8 @@ export const login = (user) => async (dispatch) => {
       userData,
       config
     );
-    if (response.status === 200) {
-      // localStorage.setItem("auth", JSON.stringify(response.data));
+    if (response) {
+      localStorage.setItem("auth", JSON.stringify(response.data));
       dispatch(loginSuccess(response.data));
 
       history.push("/task");

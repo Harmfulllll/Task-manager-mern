@@ -21,7 +21,7 @@ const AddTask = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask(state.name, state.description));
+    dispatch(addTask(state.name, state.description, currentUser.id));
     setState({
       task: "",
     });
@@ -34,14 +34,14 @@ const AddTask = () => {
           <input
             type="text"
             name="name"
-            placeholder="add your task name"
+            placeholder="Add your task name"
             onChange={handleChange}
             value={state.name}
           />
           <input
             type="text"
             name="description"
-            placeholder="add your task description"
+            placeholder="Add your task description"
             onChange={handleChange}
             value={state.description}
           />

@@ -19,17 +19,17 @@ import {
 
 const router = express.Router();
 
-router.post("/create", verifyJwt, createTask);
+router.post("/create", createTask);
 
 router.get("/get/:id", verifyJwt, getTask);
 
-router.get("/get-all", verifyJwt, getAllTask);
+router.get("/get-all", getAllTask);
 
 router.put("/update/:id", verifyJwt, updateTask);
 
-router.delete("/delete/:id", verifyJwt, deleteTask);
+router.delete("/delete/:id", deleteTask);
 
-router.patch("/change-status/:id", verifyJwt, changeStatus);
+router.put("/change-status/:id", changeStatus);
 
 router.get("/completed-count", verifyJwt, getCompletedTasksCount);
 

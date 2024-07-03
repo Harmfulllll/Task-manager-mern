@@ -8,7 +8,6 @@ import { login } from "../../redux/Conf/authSlice";
 
 function Login() {
   const dispatch = useDispatch();
-  const { register } = useForm();
 
   const [state, setState] = useState({
     email: "",
@@ -24,6 +23,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(state);
     dispatch(
       login({
         email: state.email,
@@ -49,14 +49,6 @@ function Login() {
               type="email"
               onChange={handleChange}
               name="email"
-              {...register("email", {
-                required: true,
-                validate: {
-                  matchPattern: (value) =>
-                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                    "Email address must be a valid address",
-                },
-              })}
             />
             <Input
               label="Password: "
@@ -64,10 +56,6 @@ function Login() {
               onChange={handleChange}
               name="password"
               placeholder="Enter your password"
-              {...register("password", {
-                required: true,
-                minLength: 6,
-              })}
             />
             <button>Login</button>
             {/*      {error && <span>{error}</span>} */}
