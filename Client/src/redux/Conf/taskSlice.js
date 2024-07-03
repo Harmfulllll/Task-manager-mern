@@ -59,7 +59,7 @@ export const addTask = (title, description) => async (dispatch) => {
     description,
   };
   const response = await axios.post(
-    "http://localhost:5000/api/v1/task/add",
+    "http://localhost:5000/api/v1/task/create",
     taskData
   );
   if (response) {
@@ -85,7 +85,7 @@ export const getAllTasks = (token, id) => async (dispatch) => {
 
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/task/tasks",
+      "http://localhost:5000/api/v1/task/get-all",
       config
     );
 
@@ -99,11 +99,10 @@ export const getAllTasks = (token, id) => async (dispatch) => {
   }
 };
 
-export const arrowClick = (item, string) => async () => {
+export const changeStatus = (item) => async () => {
   let taskData = {
     id: item._id,
     status: item.status,
-    string,
   };
 
   try {
