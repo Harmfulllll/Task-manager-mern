@@ -1,9 +1,10 @@
 /*
  * Title: user.route.js
- * Description : Route for user controller
+ * Description :
  * Author: Tanvir Hassan Joy
- * Date: 2024-05-12 21:57:55
+ * Date: 2024-07-03 15:48:40
  */
+
 import express from "express";
 import verifyJwt from "../middlewares/verifyJwt.js";
 import {
