@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./addtask.scss";
-import { addTask } from "../../redux/taskSlice";
+import { addTask } from "../../redux/Conf/taskSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const AddTask = () => {
@@ -8,7 +8,8 @@ const AddTask = () => {
   const { auth } = useSelector((state) => ({ ...state }));
   const { currentUser } = auth;
   const [state, setState] = useState({
-    task: "",
+    name: "",
+    description: "",
   });
 
   const handleChange = (e) => {
@@ -20,7 +21,7 @@ const AddTask = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask(state.task, currentUser.id));
+    dispatch(addTask(state.name, state.description));
     setState({
       task: "",
     });
@@ -32,10 +33,17 @@ const AddTask = () => {
         <form action="" onSubmit={handleSubmit}>
           <input
             type="text"
-            name="task"
-            placeholder="add your task"
+            name="name"
+            placeholder="add your task name"
             onChange={handleChange}
-            value={state.task}
+            value={state.name}
+          />
+          <input
+            type="text"
+            name="description"
+            placeholder="add your task description"
+            onChange={handleChange}
+            value={state.description}
           />
           <button className="button">Add Task</button>
         </form>
