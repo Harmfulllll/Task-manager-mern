@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import history from "../history";
+import history from "../../components/history";
 import { toast } from "react-toastify";
 
 const initialUser = localStorage.getItem("auth")
@@ -55,7 +55,7 @@ export const register = (user) => async (dispatch) => {
     };
 
     const response = await axios.post(
-      "http://localhost:4000/auth/register",
+      "http://localhost:5000/api/v1/auth/register",
       user,
       config
     );
@@ -83,7 +83,7 @@ export const signin = (user) => async (dispatch) => {
       password: user.password,
     };
     const response = await axios.post(
-      "http://localhost:4000/auth/signin",
+      "http://localhost:5000/api/v1/auth/login",
       userData
     );
     if (response) {
